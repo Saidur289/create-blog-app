@@ -1,13 +1,10 @@
 "use client";
 
-import {  Menu,  } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-import {
-  Accordion,
-  
-} from "@/components/ui/accordion";
+import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -69,11 +66,10 @@ const Navbar1 = ({
     {
       title: "About",
       url: "/about",
-     
     },
-    {title: "contact", url: "/contact"},
-    {title: "Blog", url: "/blog"}
-   
+    { title: "contact", url: "/contact" },
+    { title: "Blog", url: "/blog" },
+    { title: "Dashboard", url: "/dashboard" },
   ],
   auth = {
     login: { title: "Login", url: "/login" },
@@ -178,9 +174,7 @@ const renderMenuItem = (item: MenuItem) => {
     return (
       <NavigationMenuItem key={item.title}>
         <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
-        <NavigationMenuContent className="bg-popover text-popover-foreground">
-         
-        </NavigationMenuContent>
+        <NavigationMenuContent className="bg-popover text-popover-foreground"></NavigationMenuContent>
       </NavigationMenuItem>
     );
   }
@@ -199,9 +193,7 @@ const renderMenuItem = (item: MenuItem) => {
 
 const renderMobileMenuItem = (item: MenuItem) => {
   if (item.items) {
-    return 
-   
-    
+    return;
   }
 
   return (
@@ -210,7 +202,5 @@ const renderMobileMenuItem = (item: MenuItem) => {
     </Link>
   );
 };
-
-
 
 export { Navbar1 };

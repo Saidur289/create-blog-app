@@ -22,7 +22,7 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const handleSocialLogin = async() =>{
-     const data = await authClient.signIn.social({
+     await authClient.signIn.social({
     provider: "google",
     callbackURL:"http://localhost:3000"
   });
