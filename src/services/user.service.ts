@@ -5,10 +5,10 @@ const AUTH_URL = env.AUTH_URL
 export const userService = {
     getUserSession: async function () {
         try {
-            const cookieStore = cookies()
+            const cookieStore = await cookies()
             const res = await fetch(`${AUTH_URL}/get-session`, {
                 headers: {
-                    Cookie: (await cookieStore).toString()
+                    Cookie: cookieStore.toString()
                 }
             })
             const session = await res.json()
@@ -16,7 +16,7 @@ export const userService = {
             return { data: session, error: null }
         } catch (error) {
             console.error(error)
-            return { data: null, msg: "Some thing wrong in get session" }
+            return { data: null, error: { message: "Some thing wrong in get session" } }
         }
     }
 }

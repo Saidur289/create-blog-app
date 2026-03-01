@@ -1,5 +1,7 @@
 import { env } from "@/env"
+import { BlogData } from "@/types"
 import { revalidateTag } from "next/cache"
+import { cookies } from "next/headers"
 
 interface getBlogsParams {
     isFeatured?: boolean,
@@ -45,6 +47,23 @@ export const blogService = {
             return { data: null, error: { message: "fetch failed to get blog post" } }
         }
 
+    },
+    createPost: async function (blogData: BlogData) {
+        try {
+            const cookieStore = await cookies()
+            const data = await fetch(`${API_URL}/posts`, {
+                method: "POST",
+                headers: {
+                    Cookie: cookieStore.toString(),
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(blogData)
+            })
+            // console.log(data);
+            return { data: data.json(), error: null }
+        } catch {
+            return { data: null, error: { message: "Failed Create Post" } }
+        }
     }
 
 }
